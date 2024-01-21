@@ -1,16 +1,25 @@
 import React from 'react';
-import logo from '../../Images/logo.png';
+import styled from 'styled-components';
+import logo from '../../Images/Logo.svg';
 
-function Logo  ()  {
-  return (
-    <div className='logo'>
-        
-      <img src={logo} 
-      alt="logo" 
-      className='logo-img '/>
+const LogoWrapper = styled.div`
+   display: flex;
+   font-size: 30px;
+   margin-left: 1%;
+`;
 
-    </div>
-  );
-};
+const LogoImg = styled.img`
+   margin-right: 10px;
+   width: 60px;
+`;
 
-export default MeuComponente;
+function Logo() {
+   return (
+      <LogoWrapper>
+         <LogoImg src={logo} alt='logo' />
+         <p><strong>Books</strong>React</p>
+      </LogoWrapper>
+   );
+}
+
+export default Logo;
