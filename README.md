@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Books-React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descrição
 
-## Available Scripts
+Books-React é uma aplicação web desenvolvida em React.js para gerenciar uma biblioteca de livros. A aplicação permite que os usuários visualizem todos os livros disponíveis, procurem um livro por ID, adicionem um novo livro, modifiquem um livro existente e removam um livro.
 
-In the project directory, you can run:
+## Instalação
 
-### `npm start`
+Para instalar e executar o Books-React, siga as seguintes etapas:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Navegue até o diretório do projeto.
+2. Instale as dependências.
+3. Inicie o servidor de desenvolvimento.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A aplicação agora deve estar rodando em `http://localhost:3000`.
 
-### `npm test`
+## Uso
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Visualizar todos os livros
 
-### `npm run build`
+Para visualizar todos os livros, acesse a rota `/livros`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Procurar um livro por ID
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para procurar um livro por ID, acesse a rota `/livros/:id`, substituindo `:id` pelo ID do livro que você deseja procurar.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Adicionar um novo livro
 
-### `npm run eject`
+Para adicionar um novo livro, envie uma solicitação POST para a rota `/livros` com o corpo da solicitação contendo os detalhes do novo livro.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Modificar um livro existente
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para modificar um livro existente, envie uma solicitação PUT para a rota `/livros/:id`, substituindo `:id` pelo ID do livro que você deseja modificar. O corpo da solicitação deve conter os detalhes atualizados do livro.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Remover um livro
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Para remover um livro, envie uma solicitação DELETE para a rota `/livros/:id`, substituindo `:id` pelo ID do livro que você deseja remover.
 
-## Learn More
+## Contribuição
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contribuições são sempre bem-vindas! Para contribuir, por favor:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Faça um fork do projeto.
+2. Crie uma nova branch para suas modificações.
+3. Envie um pull request.
 
-### Code Splitting
+## Licença
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
