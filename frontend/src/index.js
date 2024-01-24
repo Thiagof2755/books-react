@@ -1,6 +1,7 @@
 import React, { createFactory } from 'react';
 import ReactDOM from 'react-dom/client';
-import Home from './Home';
+import Home from './Routes/Home';
+import Favoritos from './Routes/Favoritos';
 import { createGlobalStyle } from 'styled-components'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
@@ -52,7 +53,7 @@ root.render(
     <BrowserRouter>
      <Header />
       <Routes>
-        <Route path="/favoritos" element={<p>Página favoritos</p>} />
+        <Route path="/favoritos" element={<Favoritos />} />
         <Route path="/minha estante" element={<p>Página minha estante</p>} />
         <Route path="/" element={<Home />} />
       </Routes>

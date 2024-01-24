@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Pesquisa from './Components/Pesquisa';
-import UltimosLancamentos from './Components/UltimosLancamentos';
+import Pesquisa from '../Components/Pesquisa';
+import UltimosLancamentos from '../Components/UltimosLancamentos';
 
 const AppContainer = styled.div`
     width: 100vw;

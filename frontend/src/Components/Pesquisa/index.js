@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../Input';
 import styled from 'styled-components';
-import { useState } from 'react';
-import { livros } from './dadosPesquisa';
+import { getLivros } from '../../Services/livros';
+import livroImg from '../../Images/livro.png'; 
+import { postFavorito } from '../../Services/favoritos';
 
 const PesquisaContainer = styled.section`
     color: #FFF;
@@ -26,25 +27,24 @@ const Subtitulo = styled.h3`
     margin-bottom: 60px;
 `;
 
-const InputContainer = styled.div`
+const ResultadoContainer = styled.div`
     display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
 `;
 
 const Resultado = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 15px;
+    margin-right: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
     p {
         font-size: 18px;
-        margin-left: 15px;
+        margin-top: 10px;
         color: #FFF;
     }
 
@@ -57,16 +57,32 @@ const Resultado = styled.div`
 
 function Pesquisa() {
     const [livrosPesquisados, setLivrosPesquisados] = useState([]);
-    const [textoPesquisa, setTextoPesquisa] = useState('');
+    const [livros, setLivros] = useState([]);
 
-const handlePesquisa = () => {
-    const resultadoPesquisa = livros.filter((livro) => livro.nome.toLowerCase().includes(textoPesquisa.toLowerCase()));
-    setLivrosPesquisados(resultadoPesquisa);
-};
+    useEffect(() => {
+        fetchLivros();
+    }, []);
 
-    const handleKeyDown = (evento) => {
-        if (evento.key === 'Enter') {
-            handlePesquisa();
+    async function fetchLivros() {
+        const livrosDaAPI = await getLivros();
+        setLivros(livrosDaAPI);
+    }
+
+    
+    async function insertFavorito(id) {
+        await postFavorito(id)
+        alert(`Livro de id:${id} inserido!`)
+}
+
+    const handleInputBlur = (evento) => {
+        const textoDigitado = evento.target.value;
+        const resultadoPesquisa = livros.filter((livro) => livro.nome.includes(textoDigitado));
+        setLivrosPesquisados(resultadoPesquisa);
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleInputBlur(event);
         }
     };
 
@@ -74,21 +90,20 @@ const handlePesquisa = () => {
         <PesquisaContainer>
             <Titulo>Já sabe por onde começar?</Titulo>
             <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
-            <InputContainer>
-                <Input
-                    placeholder="Escreva sua próxima leitura"
-                    onChange={(evento) => setTextoPesquisa(evento.target.value)}
-                    onKeyDown={handleKeyDown}
-                />
-            </InputContainer>
-            {livrosPesquisados.map((livro) => (
-                <Resultado key={livro.id}>
-                    <img src={livro.src} alt={livro.nome} />
-                    <p>{livro.nome}</p>
-                </Resultado>
-            ))}
+            <Input
+                placeholder="Escreva sua próxima leitura"
+                onBlur={handleInputBlur}
+                onKeyPress={handleKeyPress}
+            />
+            <ResultadoContainer>
+                {livrosPesquisados.map((livro) => (
+                    <Resultado key={livro.nome} onClick={() => insertFavorito(livro.id)}>
+                        <img src={livroImg} alt={livro.nome} />
+                        <p>{livro.nome}</p>
+                    </Resultado>
+                ))}
+            </ResultadoContainer>
         </PesquisaContainer>
     );
-}
-
+    }
 export default Pesquisa;
